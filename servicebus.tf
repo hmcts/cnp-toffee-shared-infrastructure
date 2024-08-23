@@ -22,8 +22,8 @@ resource "azurerm_servicebus_queue" "this" {
 }
 
 resource "azurerm_role_assignment" "toffee_servicebus_data_receiver" {
-  principal_id = module.vault.managed_identity_objectid[0]
-  scope        = module.servicebus-namespace.id
+  principal_id         = module.vault.managed_identity_objectid[0]
+  scope                = module.servicebus-namespace.id
   role_definition_name = "Azure Service Bus Data Receiver"
 }
 
@@ -33,8 +33,8 @@ data "azurerm_user_assigned_identity" "keda" {
 }
 
 resource "azurerm_role_assignment" "keda_servicebus_data_receiver" {
-  principal_id = data.azurerm_user_assigned_identity.keda.principal_id
-  scope        = module.servicebus-namespace.id
+  principal_id         = data.azurerm_user_assigned_identity.keda.principal_id
+  scope                = module.servicebus-namespace.id
   role_definition_name = "Azure Service Bus Data Receiver"
 }
 
